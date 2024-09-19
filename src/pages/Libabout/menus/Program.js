@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import Title from "../../../components/Layout/Title";
 import { SubTopMenu } from "../../../components/Layout/TopMenu";
-import MenusScrollFrame from "../../../components/MenusScrollFrame";
 import Month9Data from "../datas/Program/Month9Data";
 import MenusScrollFrame from "../../../components/MenusScrollFrame";
-import Month9Data from "../datas/Program/Month9Data";
 import Title from "../../../components/Layout/Title";
 import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
 

@@ -19,6 +19,7 @@ import Wifi from "./pages/Libabout/menus/Wifi";
 import Libsetabout from "./pages/LibSetAbout/LibSetAbout";
 import SubTest from "./pages/LibSetAbout/SubTest";
 import Readbook from "./pages/ReadBook/ReadBook";
+import ReadEbook from "./pages/ReadBook/data/ReadEbook";
 import ServerConnection from './robot_functions/server/ServerConnection';
 
 function App() {
