@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "../src/assets/css/index.css";
 import "../src/assets/styles/style.scss";
@@ -19,20 +19,29 @@ import Wifi from "./pages/Libabout/menus/Wifi";
 import Libsetabout from "./pages/LibSetAbout/LibSetAbout";
 import SubTest from "./pages/LibSetAbout/SubTest";
 import Readbook from "./pages/ReadBook/ReadBook";
-import ReadEbook from "./pages/ReadBook/data/ReadEbook";
+import ServerConnection from './robot_functions/server/ServerConnection';
 
 function App() {
-  return (
-    <div className="globalContainer">
-      <Routes>
-        {/* 메인 페이지 route */}
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="/chatbot" element={<Chatbot />}></Route>
-        <Route path="/libabout" element={<Libabout />}></Route>
-        <Route path="/libsetabout" element={<Libsetabout />}></Route>
-        <Route path="/readbook" element={<Readbook />}></Route>
-        {/* 서브 페이지 테스트 route */}
-        <Route path="/subTest" element={<SubTest />}></Route>
+    const [serverInfo, setServerInfo] = useState(null);
+    const [rosData, setRosData] = useState({});
+    const [socket, setSocket] = useState(null);
+
+    return (
+        <div className="globalContainer">
+            <ServerConnection
+                setServerInfo={setServerInfo}
+                setRosData={setRosData}
+                setSocket={setSocket}
+            />
+            <Routes>
+                {/* 메인 페이지 route */}
+                <Route path="/" element={<MainPage />}></Route>
+                <Route path="/chatbot" element={<Chatbot />}></Route>
+                <Route path="/libabout" element={<Libabout />}></Route>
+                <Route path="/libsetabout" element={<Libsetabout />}></Route>
+                <Route path="/readbook" element={<Readbook />}></Route>
+                {/* 서브 페이지 테스트 route */}
+                <Route path="/subTest" element={<SubTest />}></Route>
 
         {/* 도서관 안내 페이지 route */}
         <Route path="/bookrequest" element={<BookRequest />}></Route>
