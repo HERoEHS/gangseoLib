@@ -1,9 +1,10 @@
 import React from "react";
 import SwiperComponent from "../../../components/Contents/SwiperComponent";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import RestaurantData from "../datas/Cafeteria/RestaurantData";
 import StoreData from "../datas/Cafeteria/StoreData";
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
+
 const pageData = [
     {
         title: "식당 안내",
@@ -21,7 +22,7 @@ const tabs = ["식당 안내", "매점 안내"];
 function Cafeteria() {
     return (
         <SubBackWrap>
-            <SubTopMenu />
+            <WrappedSubTopMenu />
             <div className="subContentWrap">
                 <SwiperComponent
                     mainTitle={"식당, 매점 운영 안내"}

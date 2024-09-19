@@ -1,10 +1,11 @@
 import React from "react";
 import SwiperComponent from "../../../components/Contents/SwiperComponent";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import AndroidData from "../../Libabout/datas/Wifi/AndroidData";
 import IphoneData from "../../Libabout/datas/Wifi/IphoneData";
 import NotebookData from "../../Libabout/datas/Wifi/NotebookData";
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
+
 const pageData = [
     {
         title: "안드로이드",
@@ -26,7 +27,7 @@ const tabs = ["안드로이드", "아이폰", "노트북"];
 function Wifi() {
     return (
         <SubBackWrap>
-            <SubTopMenu />
+            <WrappedSubTopMenu />
             <div className="subContentWrap">
                 {/* <TabContents></TabContents> */}
                 <SwiperComponent

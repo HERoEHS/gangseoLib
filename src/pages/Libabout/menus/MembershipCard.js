@@ -1,9 +1,10 @@
 import React from "react";
 import SwiperComponent from "../../../components/Contents/SwiperComponent";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import LoanCertificateData from "../datas/MembershipCard/LoanCertificateData";
 import MembershipData from "../datas/MembershipCard/MembershipData";
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
+
 const pageData = [
     {
         title: "대출증 안내",
@@ -21,7 +22,7 @@ const tabs = ["대출증 안내", "회원증 안내"];
 function MembershipCard() {
     return (
         <SubBackWrap>
-            <SubTopMenu />
+            <WrappedSubTopMenu />
             <div className="subContentWrap">
                 {/* <TabContents></TabContents> */}
                 <SwiperComponent

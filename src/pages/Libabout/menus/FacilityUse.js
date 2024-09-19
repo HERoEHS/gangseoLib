@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from "react";
 import SwiperComponent from "../../../components/Contents/SwiperComponent";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import Modal from "../../../pages/Libabout/datas/FacilityUse/Modal";
 import FacilityUseData from "../datas/FacilityUse/FacilityUseData";
 import FloorData from "../datas/FacilityUse/FloorData";
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
 
 function FacilityUse() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +37,7 @@ function FacilityUse() {
     console.log("Modal state:", { isModalOpen, modalContent });
     return (
         <SubBackWrap>
-            <SubTopMenu />
+            <WrappedSubTopMenu />
             <div className="subContentWrap">
                 <SwiperComponent
                     mainTitle={"시설 이용 안내"}
