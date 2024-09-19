@@ -1,10 +1,9 @@
 import React from "react";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import ParkingData from "../datas/Parking/ParkingData";
 import SwiperComponent from "../../../components/Contents/SwiperComponent";
 import ParkingDiscountData from "../datas/Parking/ParkingDiscountData";
-
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
 function Parking() {
   const pageData = [
     {
@@ -21,7 +20,7 @@ function Parking() {
   const tabs = ["주차장 안내", "주차요금 할인 안내"];
   return (
     <SubBackWrap>
-      <SubTopMenu />
+      <WrappedSubTopMenu />
       <div className="subContentWrap">
         {/* <TabContents></TabContents> */}
         <SwiperComponent

@@ -4,6 +4,10 @@ import Title from "../../../components/Layout/Title";
 import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import MenusScrollFrame from "../../../components/MenusScrollFrame";
 import Month9Data from "../datas/Program/Month9Data";
+import MenusScrollFrame from "../../../components/MenusScrollFrame";
+import Month9Data from "../datas/Program/Month9Data";
+import Title from "../../../components/Layout/Title";
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
 
 function Program() {
     const months = ["9월", "10월", "11월", "12월"];
@@ -660,21 +664,21 @@ function Program() {
 
     const changMonth = [september, october, november, december];
 
-    return (
-        <SubBackWrap>
-            <SubTopMenu />
-            <Title>프로그램 안내</Title>
-            <MenusScrollFrame
-                children={
-                    <Month9Data
-                        children={changMonth[currentMonth]}
-                        months={months}
-                        handleMonth={handleMonth}
-                    />
-                }
-            />
-        </SubBackWrap>
-    );
+  return (
+    <SubBackWrap>
+      <WrappedSubTopMenu />
+      <Title>프로그램 안내</Title>
+      <MenusScrollFrame
+        children={
+          <Month9Data
+            children={changMonth[currentMonth]}
+            months={months}
+            handleMonth={handleMonth}
+          />
+        }
+      />
+    </SubBackWrap>
+  );
 }
 
 export default Program;

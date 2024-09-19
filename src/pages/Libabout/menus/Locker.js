@@ -1,16 +1,16 @@
 import React from "react";
 import MenusScrollFrame from "../../../components/MenusScrollFrame";
 import { SubBackWrap } from "../../../components/Layout/BackWrap";
-import { SubTopMenu } from "../../../components/Layout/TopMenu";
 import LockerData from "../datas/Locker/LockerData";
 import Title from "../../../components/Layout/Title";
+import { WrappedSubTopMenu } from '../../../robot_functions/components/WrapTopMenu';
 
 function Locker() {
   const title = "사물함 안내";
 
   return (
     <SubBackWrap>
-      <SubTopMenu />
+      <WrappedSubTopMenu />
       <Title>{title}</Title>
       <MenusScrollFrame children={<LockerData />} />
     </SubBackWrap>
