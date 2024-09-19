@@ -1,15 +1,18 @@
 import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export function SmoothLink({ to, children, ...props }) {
+export function SmoothLink({ to, children, onClick, delay = 0, ...props }) {
     const navigate = useNavigate();
 
     const handleClick = (e) => {
         e.preventDefault();
-        setTimeout(() => {
-            navigate(to);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 500);
+        if (onClick) {
+            setTimeout(() => {
+                onClick(e);
+            }, delay);
+        }
+        navigate(to);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     return (
