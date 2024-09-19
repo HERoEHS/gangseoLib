@@ -1,77 +1,102 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MainIcons from "../components/Icons/MainIcons";
 import { MainBackWrap } from "../components/Layout/BackWrap";
 import SmoothLink from "../components/Layout/SmoothLink";
+import { REQUEST_TYPES, publishAimyRequest } from '../robot_functions/ros/AimyPublisher';
 
 function MainPage() {
-  return (
-    <>
-      <MainBackWrap>
-        <h1>Main Page</h1>
-        <div className="mainMenuWrap">
-          <div className="mainMenubox">
-            <SmoothLink to="/chatbot">
-              <div className="innerPoint">
-                <div>
-                  <MainIcons iconName="mainMike" />
-                  <p>
-                    챗봇 에이미와
-                    <br />
-                    대화해보세요!
-                  </p>
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         publishAimyRequest({
+    //             requestTypes: [REQUEST_TYPES.AUDIO],
+    //             presetAudio: 1
+    //         });
+    //     }, 500); // 500ms 딜레이
+
+    //     return () => clearTimeout(timer);
+    // }, []);
+
+    const handleClick = (config) => {
+        publishAimyRequest(config);
+    };
+
+    return (
+        <MainBackWrap>
+            <h1>Main Page</h1>
+            <div className="mainMenuWrap">
+                <div className="mainMenubox">
+                    <SmoothLink to="/chatbot"
+                        onClick={() => handleClick({
+                            requestTypes: [REQUEST_TYPES.DIALOGUE, REQUEST_TYPES.MOTION, REQUEST_TYPES.AUDIO],
+                            setDialogue: 1,
+                            presetMotion: 1,
+                            presetAudio: 2
+                        })}>
+                        <div className="innerPoint">
+                            <div>
+                                <MainIcons iconName="mainMike" />
+                                <p>
+                                    챗봇 에이미와
+                                    <br />
+                                    대화해보세요!
+                                </p>
+                            </div>
+                            <MainIcons iconName="iconAime" />
+                        </div>
+                    </SmoothLink>
+                    <div className="menuShadow"></div>
+                    <div className="menuLight"></div>
                 </div>
-                <MainIcons iconName="iconAime" />
-              </div>
-            </SmoothLink>
-            <div className="menuShadow"></div>
-            <div className="menuLight"></div>
-          </div>
-          <div className="mainMenuRow">
-            <div className="mainMenubox">
-              <SmoothLink to="/libabout">
-                <div className="innerType2">
-                  <MainIcons iconName="mainIconLib" />
-                  <p>
-                    도서관
-                    <br /> 안내
-                  </p>
+                <div className="mainMenuRow">
+                    <div className="mainMenubox">
+                        <SmoothLink to="/libabout">
+                            <div className="innerType2">
+                                <MainIcons iconName="mainIconLib" />
+                                <p>
+                                    도서관
+                                    <br /> 안내
+                                </p>
+                            </div>
+                        </SmoothLink>
+                        <div className="menuShadow"></div>
+                        <div className="menuLight"></div>
+                    </div>
+                    <div className="mainMenubox">
+                        <SmoothLink to="/libsetabout">
+                            <div className="innerType2">
+                                <MainIcons iconName="mainIconSeat" />
+                                <p>
+                                    도서관
+                                    <br /> 좌석안내
+                                </p>
+                            </div>
+                        </SmoothLink>
+                        <div className="menuShadow"></div>
+                        <div className="menuLight"></div>
+                    </div>
                 </div>
-              </SmoothLink>
-              <div className="menuShadow"></div>
-              <div className="menuLight"></div>
+                <div className="mainMenubox">
+                    <SmoothLink
+                        to="/readbook"
+                        onClick={() => handleClick({
+                            requestTypes: [REQUEST_TYPES.AUDIO],
+                            presetAudio: 5
+                        })}>
+                        <div className="inner">
+                            <MainIcons iconName="mainIconRead" />
+                            <p>
+                                도서
+                                <br />
+                                읽어주기
+                            </p>
+                        </div>
+                    </SmoothLink>
+                    <div className="menuShadow"></div>
+                    <div className="menuLight"></div>
+                </div>
             </div>
-            <div className="mainMenubox">
-              <SmoothLink to="/libsetabout">
-                <div className="innerType2">
-                  <MainIcons iconName="mainIconSeat" />
-                  <p>
-                    도서관
-                    <br /> 좌석안내
-                  </p>
-                </div>
-              </SmoothLink>
-              <div className="menuShadow"></div>
-              <div className="menuLight"></div>
-            </div>
-          </div>
-          <div className="mainMenubox">
-            <SmoothLink to="/readbook">
-              <div className="inner">
-                <MainIcons iconName="mainIconRead" />
-                <p>
-                  도서
-                  <br />
-                  읽어주기
-                </p>
-              </div>
-            </SmoothLink>
-            <div className="menuShadow"></div>
-            <div className="menuLight"></div>
-          </div>
-        </div>
-      </MainBackWrap>
-    </>
-  );
+        </MainBackWrap>
+    );
 }
 
 export default MainPage;
