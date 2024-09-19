@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import a8 from "../../assets/icons/Component 10.svg";
 import a9 from "../../assets/icons/Component 11.svg";
 import a10 from "../../assets/icons/Component 12.svg";
@@ -12,10 +12,22 @@ import a6 from "../../assets/icons/Component 8.svg";
 import a7 from "../../assets/icons/Component 9.svg";
 import { SubBackWrap } from "../../components/Layout/BackWrap";
 import Title from "../../components/Layout/Title";
-import { DepthTopMenu } from "../../components/Layout/TopMenu";
 import LibaboutBtn from "../../components/LibaboutBtn";
+import { REQUEST_TYPES, publishAimyRequest } from '../../robot_functions/ros/AimyPublisher';
+import { WrappedDepthTopMenu } from '../../robot_functions/components/WrapTopMenu';
 
-function libabout() {
+function Libabout() {  // React 컴포넌트 이름을 'Libabout'으로 변경
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            publishAimyRequest({
+                requestTypes: [REQUEST_TYPES.AUDIO],
+                presetAudio: 3
+            });
+        }, 250); // 100ms 딜레이
+
+        return () => clearTimeout(timer);
+    }, []);
+
     const menuList = [
         { title: "자료기증 관련 안내", icon: a1, link: "/Donation" },
         { title: "와이파이 안내", icon: a2, link: "/Wifi" },
@@ -29,15 +41,26 @@ function libabout() {
         { title: "주차장 이용 안내", icon: a10, link: "/Parking" },
         { title: "시설 이용 안내", icon: a11, link: "/FacilityUse" },
     ];
+
+    // Wrapper component for LibaboutBtn
+    const LibaboutBtnWrapper = ({ item, index }) => (
+        <div onClick={() => publishAimyRequest({
+            requestTypes: [REQUEST_TYPES.AUDIO],
+            presetAudio: 30 + index
+        })}>
+            <LibaboutBtn item={item} />
+        </div>
+    );
+
     return (
         <>
             <SubBackWrap>
-                <DepthTopMenu />
+                <WrappedDepthTopMenu />
                 <Title>도서관 안내</Title>
                 <div className="libabout">
                     <div className="libContainer">
                         {menuList.map((item, idx) => {
-                            return <LibaboutBtn key={idx} item={item} />;
+                            return <LibaboutBtnWrapper key={idx} item={item} index={idx} />
                         })}
                     </div>
                 </div>
@@ -46,4 +69,4 @@ function libabout() {
     );
 }
 
-export default libabout;
+export default Libabout;
