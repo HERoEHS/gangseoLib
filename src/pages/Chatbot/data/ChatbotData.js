@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../assets/css/sass/chatbotData.scss";
 import ChatbotQnA from "../../../components/Contents/ChatbotQnA";
+import { Chat } from "../../../robot_functions/components/chat/Chat";
 
 function ChatbotData() {
   return (
@@ -9,7 +10,7 @@ function ChatbotData() {
         <div className="chatBotBox">
           <ChatbotQnA />
           {/* 챗봇 페이지 구성 */}
-
+          <Chat />
           {/* 챗봇 페이지 구성 */}
         </div>
       </div>

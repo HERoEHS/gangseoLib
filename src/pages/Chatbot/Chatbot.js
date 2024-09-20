@@ -4,11 +4,12 @@ import { DepthTopMenu } from "../../components/Layout/TopMenu";
 import Title from "../../components/Layout/Title";
 import MenusScrollFrame from "../../components/MenusScrollFrame";
 import ChatbotData from "./data/ChatbotData";
+import { WrappedDepthTopMenu } from '../../robot_functions/components/WrapTopMenu';
 
 function Chatbot() {
   return (
     <SubBackWrap>
-      <DepthTopMenu />
+      <WrappedDepthTopMenu stopModes={[2, 4]}/>
       <Title>
         Hi,
         <span style={{ fontSize: 72, fontWeight: "bolder", color: "#EE2B74" }}>
