@@ -5,7 +5,7 @@ const REQUEST_TYPES = {
     MOTION: 1,
     AUDIO: 2,
     WAYPOINT: 3,
-    DIALOGUE: 4
+    MODE: 4
 };
 
 function generateRequestId(customId) {
@@ -24,12 +24,12 @@ function publishAimyRequest(config) {
         const message = {
             request_id: requestId,
             request_type: config.requestTypes || [],
+            stop: config.setStop || [],
             preset_motion: config.presetMotion || 0,
             preset_audio: config.presetAudio || 0,
             set_waypoints: config.setWaypoints || [],
-            set_dialogue: config.setDialogue || 0,
-            tts_text: config.ttsText || '',
-            stop: config.setStop || []
+            set_mode: config.setMode || 0,
+            tts_text: config.ttsText || ''
         };
 
         currentSocket.emit('publish_ros', {
@@ -38,7 +38,7 @@ function publishAimyRequest(config) {
             message: message
         });
 
-        console.log(`AimyDefaultRequest published with request_id: ${requestId}`, message);
+        // console.log(`AimyDefaultRequest published with request_id: ${requestId}`, message);
         return requestId;
     } else {
         console.error('Socket not connected');

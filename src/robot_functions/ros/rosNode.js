@@ -20,8 +20,10 @@ async function setupRosSubscribers(io) {
 
   const topics = [
     { name: '/heroehs/aimy/commander/status', type: 'std_msgs/msg/String' },
-    { name: '/heroehs/aimy/vision/person', type: 'std_msgs/msg/Bool' },
-    { name: '/heroehs/aimy/chest_display', type: 'std_msgs/msg/Int32' },
+    { name: '/heroehs/aimy/dialogue/stt', type: 'std_msgs/msg/String' },
+    { name: '/heroehs/aimy/dialogue/stt/stream', type: 'std_msgs/msg/String' },
+    { name: '/heroehs/aimy/dialogue/llm', type: 'std_msgs/msg/String' },
+    { name: '/heroehs/aimy/manage/ebook', type: 'std_msgs/msg/String' },
   ];
 
   topics.forEach(topic => {
