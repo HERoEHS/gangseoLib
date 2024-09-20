@@ -18,7 +18,7 @@ def generate_launch_description():
     start_js_file = os.path.join(
         share_directory,
         'dist',
-        'ros/Express.js')
+        'robot_functions/server/Express.js')
 
     start_javascript_node = Node(
         name='test_node',
