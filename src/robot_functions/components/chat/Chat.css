@@ -1,0 +1,143 @@
+@font-face {
+    font-family: 'VitroPride';
+    font-weight: normal;
+    font-style: normal;
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/vitro/VitroPride.eot');
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/vitro/VitroPride.eot?#iefix') format('embedded-opentype'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/vitro/VitroPride.woff2') format('woff2'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/vitro/VitroPride.woff') format('woff'),
+        url('https://cdn.jsdelivr.net/gh/webfontworld/vitro/VitroPride.ttf') format("truetype");
+    font-display: swap;
+}
+
+.App {
+    text-align: center;
+    align-items: center;
+}
+
+.App div p {
+    margin: 0;
+}
+
+* {
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.Message {
+    display: flex;
+    align-items: center;
+    /* justify-content: right; */
+    margin-top: 5.21vh;
+    margin-bottom: 5.21vh;
+    /* 100/1920 = 5.21% */
+}
+
+:root {
+    --width-minmax: 50.76vw;
+    /* 1750/2880 = 60.76% */
+}
+
+.chatbaloon {
+    display: flex;
+    max-width: var(--width-minmax);
+    padding: 4vw 10vh;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35vw;
+    /* 10/2880 = 0.35% */
+
+    border-radius: 0.8em;
+    background: #EEEFEF;
+
+
+    /* text setting */
+    color: #313131;
+    /* text-align: center; */
+    font-family: VitroPride;
+    font-size: 2.43vw;
+    /* 70/2880 = 2.43% */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+#gemini,
+#user {
+    font-family: VitroPride;
+    font-size: 3.68vw;
+    /* 106/2880 = 3.68% */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120.523%;
+}
+
+#gemini {
+    color: #E89216;
+}
+
+#user {
+    color: #6B9C0C;
+}
+
+/* SVG의 크기 조절 */
+.custom-svg {
+    width: 3.58vw;
+    height: 1.77vh;
+}
+
+#siriwave {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 80%;
+    height: 28vh;
+    opacity: 0.6;
+    margin: 0 auto;
+    pointer-events: none;
+    /* 이벤트 무시 */
+}
+
+.Chat {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.Message {
+    display: flex;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.initial-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.2em;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+.chat-ui {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

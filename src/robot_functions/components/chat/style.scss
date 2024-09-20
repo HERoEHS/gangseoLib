@@ -1,0 +1,182 @@
+// @use 'three-dots';
+
+@use 'three-dots' with ($dot-color: #7c7c7c,
+  $dot-width: 50px,
+  $dot-height: 50px,
+
+  // $dot-bg-color: $dot-color,
+  // $dot-before-color: $dot-color,
+  // $dot-after-color: $dot-color,
+
+  // $dot-spacing: $dot-width + $dot-width/2,
+);
+
+$dot-width: 40px !default;
+$dot-height: 40px !default;
+$dot-radius: $dot-width / 2 !default;
+$dot-color: #9880ff !default;
+$dot-bg-color: $dot-color !default;
+$dot-before-color: $dot-color !default;
+$dot-after-color: $dot-color !default;
+$dot-spacing: $dot-width + $dot-width / 2 !default;
+
+// /**
+//  * ==============================================
+//  * Dot Flashing
+//  * ==============================================
+//  */
+// .dot-flashing {
+//   position: relative;
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 5px;
+//   background-color: #9880ff;
+//   color: #9880ff;
+//   animation: dot-flashing 1s infinite linear alternate;
+//   animation-delay: 0.5s;
+// }
+
+// .dot-flashing::before,
+// .dot-flashing::after {
+//   content: "";
+//   display: inline-block;
+//   position: absolute;
+//   top: 0;
+// }
+
+// .dot-flashing::before {
+//   left: -15px;
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 5px;
+//   background-color: #9880ff;
+//   color: #9880ff;
+//   animation: dot-flashing 1s infinite alternate;
+//   animation-delay: 0s;
+// }
+
+// .dot-flashing::after {
+//   left: 15px;
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 5px;
+//   background-color: #9880ff;
+//   color: #9880ff;
+//   animation: dot-flashing 1s infinite alternate;
+//   animation-delay: 1s;
+// }
+
+// @keyframes dot-flashing {
+//   0% {
+//     background-color: #9880ff;
+//   }
+
+//   50%,
+//   100% {
+//     background-color: rgba(152, 128, 255, 0.2);
+//   }
+// }
+.dot-flashing {
+  // position: relative;
+  // width: 10px;
+  // height: 10px;
+  // border-radius: 5px;
+  // background-color: #9880ff;
+  // color: #9880ff;
+  margin: 0.37em 1em;
+
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.56s;
+}
+
+.dot-flashing::before {
+  // left: -15px;
+  // width: 10px;
+  // height: 10px;
+  // border-radius: 5px;
+  // background-color: #9880ff;
+  // color: #9880ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  // left: 15px;
+  // width: 10px;
+  // height: 10px;
+  // border-radius: 5px;
+  // background-color: #9880ff;
+  // color: #9880ff;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+
+/*Huge thanks to @tobiasahlin at http://tobiasahlin.com/spinkit/ */
+.spinner {
+  margin: auto 0;
+  width: 3.8em;
+  text-align: center;
+}
+
+.spinner>div {
+  margin: auto 0.1em;
+
+  width: 0.6em;
+  height: 0.6em;
+  background-color: #676767;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 2s infinite ease-in-out both;
+  animation: sk-bouncedelay 2s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0)
+  }
+
+  40% {
+    -webkit-transform: scale(1.0)
+  }
+}
+
+@keyframes sk-bouncedelay {
+
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  40% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+#dots {
+  position: fixed;
+  bottom: 100px;
+  /* width: 80%; */
+  /* height: 28vh; */
+  opacity: 0.6;
+  margin: 0 auto;
+  left: 1em;
+  right: 1em;
+}
