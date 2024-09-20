@@ -4,7 +4,7 @@ import { SubBackWrap } from "../../components/Layout/BackWrap";
 import { DepthTopMenu } from "../../components/Layout/TopMenu";
 import Nomal from "./datas/Nomal";
 import Notebook from "./datas/Notebook";
-import { REQUEST_TYPES, publishAimyRequest } from '../../robot_functions/ros/AimyPublisher';
+import { REQUEST_TYPES, publishAimyRequest } from '../../robot_functions/ros/PublishAimyRequest';
 import { WrappedDepthTopMenu } from '../../robot_functions/components/WrapTopMenu';
 
 function LibSetAbout() { // React 컴포넌트 이름을 'LibSetAbout'으로 변경

@@ -13,7 +13,7 @@ import a7 from "../../assets/icons/Component 9.svg";
 import { SubBackWrap } from "../../components/Layout/BackWrap";
 import Title from "../../components/Layout/Title";
 import LibaboutBtn from "../../components/LibaboutBtn";
-import { REQUEST_TYPES, publishAimyRequest } from '../../robot_functions/ros/AimyPublisher';
+import { REQUEST_TYPES, publishAimyRequest } from '../../robot_functions/ros/PublishAimyRequest';
 import { WrappedDepthTopMenu } from '../../robot_functions/components/WrapTopMenu';
 
 function Libabout() {  // React 컴포넌트 이름을 'Libabout'으로 변경

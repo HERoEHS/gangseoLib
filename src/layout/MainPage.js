@@ -2,15 +2,17 @@ import React, { useEffect } from "react";
 import MainIcons from "../components/Icons/MainIcons";
 import { MainBackWrap } from "../components/Layout/BackWrap";
 import SmoothLink from "../components/Layout/SmoothLink";
-import { REQUEST_TYPES, publishAimyRequest } from '../robot_functions/ros/AimyPublisher';
+import { REQUEST_TYPES, publishAimyRequest } from '../robot_functions/ros/PublishAimyRequest';
+import { publishCommon } from '../robot_functions/ros/PublishCommon';
 
 function MainPage() {
     // useEffect(() => {
+    //     const config = {
+    //         data: "hi"
+    //     };
+
     //     const timer = setTimeout(() => {
-    //         publishAimyRequest({
-    //             requestTypes: [REQUEST_TYPES.AUDIO],
-    //             presetAudio: 1
-    //         });
+    //         publishCommon('/heroehs/aimy/test', 'std_msgs/msg/String', config);
     //     }, 500); // 500ms 딜레이
 
     //     return () => clearTimeout(timer);
@@ -27,10 +29,9 @@ function MainPage() {
                 <div className="mainMenubox">
                     <SmoothLink to="/chatbot"
                         onClick={() => handleClick({
-                            requestTypes: [REQUEST_TYPES.DIALOGUE, REQUEST_TYPES.MOTION, REQUEST_TYPES.AUDIO],
-                            setDialogue: 1,
-                            presetMotion: 1,
-                            presetAudio: 2
+                            requestTypes: [REQUEST_TYPES.AUDIO, REQUEST_TYPES.MODE],
+                            presetAudio: 2,
+                            setMode: 1
                         })}>
                         <div className="innerPoint">
                             <div>
