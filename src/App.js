@@ -37,7 +37,7 @@ function App() {
             <Routes>
                 {/* 메인 페이지 route */}
                 <Route path="/" element={<MainPage />}></Route>
-                <Route path="/chatbot" element={<Chatbot />}></Route>
+                <Route path="/chatbot" element={<Chatbot socket={socket} rosData={rosData} />}></Route>
                 <Route path="/libabout" element={<Libabout />}></Route>
                 <Route path="/libsetabout" element={<Libsetabout />}></Route>
                 <Route path="/readbook" element={<Readbook />}></Route>
