@@ -1,20 +1,20 @@
 import React from "react";
 import { DepthTopMenu, SubTopMenu } from "../../components/Layout/TopMenu";
-import { REQUEST_TYPES, publishAimyRequest } from "../ros/AimyPublisher";
+import { REQUEST_TYPES, publishAimyRequest } from "../ros/PublishAimyRequest";
 
-const WrappedDepthTopMenu = () => (
+const WrappedDepthTopMenu = ({ stopModes = [2] }) => (
     <div onClick={() => publishAimyRequest({
         requestTypes: [REQUEST_TYPES.STOP],
-        setStop: [2] // AUDIO
+        setStop: stopModes
     })}>
         <DepthTopMenu />
     </div>
 );
 
-const WrappedSubTopMenu = () => (
+const WrappedSubTopMenu = ({ stopModes = [2] }) => (
     <div onClick={() => publishAimyRequest({
         requestTypes: [REQUEST_TYPES.STOP],
-        setStop: [2] // AUDIO
+        setStop: stopModes
     })}>
         <SubTopMenu />
     </div>
