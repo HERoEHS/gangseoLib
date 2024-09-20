@@ -5,10 +5,10 @@ const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 const { initRosNode, setupRosSubscribers } = require('../ros/rosNode');
-const { publishMessage } = require('./rosPublisher');
+const { publishMessage } = require('../ros/serverPublisher');
 
 // .env 파일 경로 설정 및 로드
-const envPath = path.resolve(__dirname, '../../.env');
+const envPath = path.resolve(__dirname, '../../../.env');
 dotenv.config({ path: envPath });
 
 const HOST_IP = process.env.HOST_IP || 'localhost';
@@ -25,10 +25,8 @@ const app = express();
 const server = http.createServer(app);
 
 const corsOptions = {
-  origin: CLIENT_ORIGIN,
-  methods: ['GET', 'POST'],
-  credentials: true,
-  optionsSuccessStatus: 204
+  origin: ['http://192.168.50.22:3000', 'http://localhost:3000'],
+  credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -37,7 +35,7 @@ const io = socketIo(server, {
   cors: corsOptions
 });
 
-app.use(express.static(path.join(__dirname, '../../build')));
+app.use(express.static(path.join(__dirname, '../../../build')));
 
 app.get('/api/serverInfo', (req, res) => {
   res.json({
@@ -47,7 +45,7 @@ app.get('/api/serverInfo', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../../../build', 'index.html'));
 });
 
 initRosNode().then(() => {
