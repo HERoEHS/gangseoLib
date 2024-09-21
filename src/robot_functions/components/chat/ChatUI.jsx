@@ -70,7 +70,7 @@ function ChatBalloon({ message, opacity }) {
     const marginRight = isSTT ? "0px" : margin_pixel;
 
     const ChatBaloonAlign = isSTT ? 'right' : 'left';
-    const ChatBaloonColor = isSTT ? '#224E0F' : '#713300';
+    const ChatBaloonColor = isSTT ? '#713300' : '#224E0F';  // 색상을 서로 바꿨습니다
 
     return (
         <div className="Message" style={MessageStyle}>

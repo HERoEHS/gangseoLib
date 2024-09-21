@@ -13,7 +13,9 @@ export function Chat() {
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
     };
 
     useEffect(() => {
@@ -46,6 +48,22 @@ export function Chat() {
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    // New useEffect for handling resize and mutation events
+    useEffect(() => {
+        const resizeObserver = new ResizeObserver(scrollToBottom);
+        const mutationObserver = new MutationObserver(scrollToBottom);
+
+        if (chatContainerRef.current) {
+            resizeObserver.observe(chatContainerRef.current);
+            mutationObserver.observe(chatContainerRef.current, { childList: true, subtree: true });
+        }
+
+        return () => {
+            resizeObserver.disconnect();
+            mutationObserver.disconnect();
+        };
+    }, []);
 
     return (
         <div className="Chat">
