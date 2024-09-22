@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./Chat.css";
 
 function MessageHeader({ id, label, opacity = "1.0", marginLeft = "25px", marginRight = "25px" }) {
     return (
@@ -105,30 +106,51 @@ function ChatBalloon({ message, opacity }) {
     );
 }
 
-function InitialMessage({ isVisible }) {
+function InitialMessage({ isVisible, fontSize = '2.7rem', layout = 'column' }) {
     const style = {
         opacity: isVisible ? 1 : 0,
         transition: 'opacity 0.5s ease-in-out',
         position: 'absolute',
-        top: 0,
+        top: '15vh',
         left: 0,
         right: 0,
         bottom: 0,
+        height: '10em',
         display: 'flex',
+        flexDirection: layout === 'column' ? 'column' : 'row',
         justifyContent: 'center',
         alignItems: 'center',
         pointerEvents: isVisible ? 'auto' : 'none',
         zIndex: isVisible ? 1 : -1,
+        // fontSize: fontSize,
     };
+
+    const pStyle = {
+        margin: layout === 'column' ? '2.2vh 0' : '0 10px',
+        fontSize: fontSize,
+        fontFamily: 'VitroPride, sans-serif',
+        color: "#616161"
+    };
+
+    const pStyle2 = {
+        fontSize: '5rem',
+        // color: "#6B9C0C"
+    }
+
+    const amyStyle = {
+        color: "#6B9C0C",
+    }
 
     return (
         <div className="initial-message" style={style}>
-            <p>어떠한 질문이든 물어보세요.</p>
+            <p style={pStyle}>웰컴로봇 에이미에게</p>
+            <p style={pStyle}>강서도서관에 대해 물어보세요!</p>
+            <p style={{ ...pStyle, ...pStyle2 }}>
+                <span style={{ ...pStyle2, ...amyStyle }}>에이미</span> 안녕?
+            </p>
         </div>
     );
 }
-
-
 function ChatBalloonList({ messages }) {
     const [showInitialMessage, setShowInitialMessage] = useState(true);
 
