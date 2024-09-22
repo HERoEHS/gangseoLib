@@ -5,6 +5,7 @@ import Title from "../../components/Layout/Title";
 import MenusScrollFrame from "../../components/MenusScrollFrame";
 import ReadBookData from "./data/ReadBookData";
 import readbookimg1 from "../../assets/images/readbookimg1.svg";
+import { WrappedDepthTopMenu } from '../../robot_functions/components/WrapTopMenu';
 
 function Readbook() {
   const ebooks = [
@@ -20,7 +21,7 @@ function Readbook() {
   ];
   return (
     <SubBackWrap>
-      <DepthTopMenu />
+      <WrappedDepthTopMenu stopModes={[2, 4]}/>
       <Title>도서 읽어주기</Title>
       <MenusScrollFrame children={<ReadBookData ebooks={ebooks} />} />
     </SubBackWrap>
