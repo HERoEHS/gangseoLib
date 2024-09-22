@@ -3,6 +3,7 @@ import mainMike from "../../assets/images/iconMike.png";
 import iconAime from "../../assets/images/imgAimy.png";
 import mainIconLib from "../../assets/images/mainIconLib.png";
 import mainIconRead from "../../assets/images/mainIconRead.png";
+import mainIconSearch from "../../assets/images/mainIconSearch.png";
 import mainIconSeat from "../../assets/images/mainIconSeat.png";
 
 const icons = {
@@ -11,6 +12,7 @@ const icons = {
     mainIconSeat,
     mainIconRead,
     mainMike,
+    mainIconSearch,
 };
 function MainIcon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];
