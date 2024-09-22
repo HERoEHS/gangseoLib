@@ -21,6 +21,7 @@ import SubTest from "./pages/LibSetAbout/SubTest";
 import ReadEbook from "./pages/ReadBook/data/ReadEbook";
 import ServerConnection from './robot_functions/server/ServerConnection';
 import Readbook from "./pages/ReadBook/ReadBook";
+import SerchBook from "./pages/SerchBook/SerchBook";
 
 function App() {
     const [serverInfo, setServerInfo] = useState(null);
@@ -67,7 +68,7 @@ function App() {
                 ></Route>
 
                 {/* 도서 검색 route */}
-                {/* <Route path="/serchbook" element={<SerchBook />}></Route> */}
+                <Route path="/serchbook" element={<SerchBook />}></Route>
             </Routes>
         </div>
     );
