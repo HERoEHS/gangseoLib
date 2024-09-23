@@ -118,7 +118,7 @@ function Ebook() {
                 ref={iframeRef}
                 src="/ebook/index.html"
                 title="Ebook Viewer"
-                style={{ width: '100%', height: '54vh', border: 'none' }}
+                style={{ width: '100%', height: '64vh', border: 'none' }}
             />
             <div
                 style={{
@@ -127,7 +127,7 @@ function Ebook() {
                     left: '10px',
                     transform: 'translateY(-50%)',
                     width: '3em',
-                    height: '20em',
+                    height: '23.2em',
                     backgroundColor: 'rgba(255, 255, 255, 0.7)',
                     border: '1px solid #ccc',
                     borderRadius: '5px',
@@ -135,7 +135,8 @@ function Ebook() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     cursor: 'pointer',
-                    zIndex: 10
+                    zIndex: 10,
+                    opacity: 0.05
                 }}
                 onClick={() => handlePageMove('prev')}
             >
@@ -148,7 +149,7 @@ function Ebook() {
                     right: '10px',
                     transform: 'translateY(-50%)',
                     width: '3em',
-                    height: '20em',
+                    height: '23.2em',
                     backgroundColor: 'rgba(255, 255, 255, 0.7)',
                     border: '1px solid #ccc',
                     borderRadius: '5px',
@@ -156,7 +157,8 @@ function Ebook() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     cursor: 'pointer',
-                    zIndex: 10
+                    zIndex: 10,
+                    opacity: 0.05
                 }}
                 onClick={() => handlePageMove('next')}
             >
