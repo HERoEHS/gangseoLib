@@ -146,7 +146,7 @@ export function useChatLogic() {
     };
 
     const handleRosDataUpdate = (updatedTopic) => {
-        console.log('Received ROS data update:', updatedTopic);
+        // console.log('Received ROS data update:', updatedTopic);
         const { topic, data, timestamp } = updatedTopic;
 
         dispatch({
