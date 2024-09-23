@@ -18,7 +18,7 @@ function ReadBookData({ ebooks }) {
           <div key={idx} className="readBookContainer">
             <div className="readBookInner">
               <div className="innerImg">
-                <img src={item.image} alt="" />
+                <img src={item.image} alt="" style={item.imageStyle} />
               </div>
               <div className="innerContent">
                 <div className="contentText">
