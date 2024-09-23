@@ -106,24 +106,19 @@ function MainPage() {
                     </div> */}
                     {/* 한개짜리 */}
                     <div className="mainMenubox">
-                                <SmoothLink
-                        to="/readbook"
-                        onClick={() => handleClick({
-                            requestTypes: [REQUEST_TYPES.AUDIO],
-                            presetAudio: 5
-                        })}>
-                                      <div className="inner">
-                                            <MainIcons iconName="mainIconRead" />
-                                            <p>
-                                                  도서
-                                                  <br />
-                                                  읽어주기
-                                            </p>
-                                      </div>
-                                </SmoothLink>
-                                <div className="menuShadow"></div>
-                                <div className="menuLight"></div>
-                          </div>
+                        <SmoothLink to="/readbook">
+                            <div className="inner">
+                                <MainIcons iconName="mainIconRead" />
+                                <p>
+                                    도서
+                                    <br />
+                                    읽어주기
+                                </p>
+                            </div>
+                        </SmoothLink>
+                        <div className="menuShadow"></div>
+                        <div className="menuLight"></div>
+                    </div>
                         {/* 한개짜리 */}
                 </div>
               </MainBackWrap>
