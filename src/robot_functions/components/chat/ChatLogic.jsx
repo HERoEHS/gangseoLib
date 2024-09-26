@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 const initialState = {
     messages: [],
@@ -117,58 +117,50 @@ const chatReducer = (state, action) => {
 };
 
 export function useChatLogic() {
-    const [chatState, dispatch] = React.useReducer(chatReducer, initialState);
+    const [chatState, dispatch] = useReducer(chatReducer, initialState);
 
-    const handleSttUpdate = (topic, data) => {
-        if (data === '<NONE>') return; // <NONE> 메시지 무시
+    const handleSttUpdate = useCallback((topic, data) => {
+        if (data === '<NONE>') return;
         if (topic === '/heroehs/aimy/dialogue/stt/stream') {
             if (data === '<BOS>') {
                 dispatch({ type: 'START_STT' });
             } else if (data === '<EOS>') {
                 dispatch({ type: 'COMPLETE_STT_STREAM' });
-            } else if (chatState.sttState.isActive && !chatState.sttState.currentMessage.isComplete) {
+            } else {
                 dispatch({ type: 'UPDATE_STT_STREAM', payload: { data } });
             }
         } else if (topic === '/heroehs/aimy/dialogue/stt') {
             dispatch({ type: 'COMPLETE_STT', payload: { data } });
         }
-    };
+    }, []);
 
-    const handleLlmUpdate = (data) => {
-        if (data === '<NONE>') return; // <NONE> 메시지 무시
+    const handleLlmUpdate = useCallback((data) => {
+        if (data === '<NONE>') return;
         if (data === '<BOS>') {
             dispatch({ type: 'START_LLM' });
         } else if (data === '<EOS>') {
             dispatch({ type: 'COMPLETE_LLM' });
-        } else if (chatState.llmState.isActive && !chatState.llmState.currentMessage.isComplete) {
+        } else {
             dispatch({ type: 'UPDATE_LLM', payload: { data } });
         }
-    };
+    }, []);
 
-    const handleRosDataUpdate = (updatedTopic) => {
-        // console.log('Received ROS data update:', updatedTopic);
-        const { topic, data, timestamp } = updatedTopic;
+    const handleRosDataUpdate = useCallback((updatedData) => {
+        const { topic, data } = updatedData;
 
         dispatch({
             type: 'UPDATE_LAST_DATA',
-            payload: { topic, timestamp }
+            payload: { topic, timestamp: Date.now() }
         });
 
         if (topic === '/heroehs/aimy/dialogue/stt/stream' || topic === '/heroehs/aimy/dialogue/stt') {
             handleSttUpdate(topic, data);
-            console.log('Received STT data:', data);
         } else if (topic === '/heroehs/aimy/dialogue/llm') {
             handleLlmUpdate(data);
-        } else {
-            // console.log('Received data for other topic:', topic, data);
         }
-    };
+    }, [handleSttUpdate, handleLlmUpdate]);
 
-    React.useEffect(() => {
-        // console.log('Current chat state:', chatState);
-    }, [chatState]);
-
-    const getAllMessages = () => {
+    const getAllMessages = useCallback(() => {
         const completedMessages = chatState.messages;
         const currentStt = chatState.sttState.currentMessage;
         const currentLlm = chatState.llmState.currentMessage;
@@ -178,7 +170,7 @@ export function useChatLogic() {
             ...(currentStt ? [currentStt] : []),
             ...(currentLlm ? [currentLlm] : [])
         ];
-    };
+    }, [chatState]);
 
     return {
         messages: getAllMessages(),

@@ -9,7 +9,7 @@ function ReadBookData({ ebooks }) {
   console.log(ebooks);
   const handleClick = (config) => {
     publishAimyRequest(config);
-};
+  };
 
   return (
     <>
@@ -34,8 +34,8 @@ function ReadBookData({ ebooks }) {
                   <SmoothLink
                     to={`/readbook/ebook/${encodeURIComponent(item.title)}`}
                     onClick={() => handleClick({
-                        requestTypes: [REQUEST_TYPES.MODE],
-                        setMode: 2
+                      requestTypes: [REQUEST_TYPES.MODE],
+                      setMode: 2
                     })}>
                     <div className="btnText">도서 읽어주기</div>
                   </SmoothLink>

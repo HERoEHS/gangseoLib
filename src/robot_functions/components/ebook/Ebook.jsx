@@ -1,14 +1,15 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react';
-import { getSocket, getRosData } from '../../ros/rosStore';
 import { publishCommon } from '../../ros/PublishCommon';
+import { useRosData } from '../../hooks/useRosData';
+import { compile } from 'sass';
 
 function Ebook() {
     const iframeRef = useRef(null);
     const [iframeLoaded, setIframeLoaded] = useState(false);
     const [sampleText, setSampleText] = useState('');
-    const [socket, setSocket] = useState(null);
-    const [rosData, setRosData] = useState({});
     const [shouldPublish, setShouldPublish] = useState(false);
+
+    const rosData = useRosData(['/heroehs/aimy/manage/ebook']);
 
     const handlePageMove = (direction) => {
         const iframe = iframeRef.current;
@@ -19,46 +20,33 @@ function Ebook() {
         }
     };
 
-    const handleRosDataUpdate = useCallback((data) => {
-        // console.log('1111111:', data);
-        if (data.topic === '/heroehs/aimy/manage/ebook') {
-            // console.log('2222222:', data);
-            if (data.data === 'request_text') {
+    const handleRosDataUpdate = useCallback((topic, data) => {
+        console.log("handleRosDataUpdate topic:", topic, data);
+        if (topic === '/heroehs/aimy/manage/ebook') {
+            console.log("Entered ebook condition");
+
+            // data가 객체인 경우를 처리
+            const messageData = typeof data === 'object' && data !== null ? data.data : data;
+
+            console.log("Processed message data:", messageData);
+
+            if (messageData === 'request_text') {
+                console.log("Requesting text");
                 setTimeout(() => {
                     setShouldPublish(true);
                 }, 1000); // 1초 delay
-            } else if (data.data === 'next_page') {
+            } else if (messageData === 'next_page') {
+                console.log("Moving to next page");
                 handlePageMove('next');
             }
         }
     }, []);
 
     useEffect(() => {
-        const currentSocket = getSocket();
-        setSocket(currentSocket);
-
-        if (currentSocket) {
-            currentSocket.on('ros_data_update', (data) => {
-                handleRosDataUpdate(data);
-                console.log('Received ROS data:', data);
-            });
+        if (rosData['/heroehs/aimy/manage/ebook']) {
+            handleRosDataUpdate('/heroehs/aimy/manage/ebook', rosData['/heroehs/aimy/manage/ebook'].data);
         }
-
-        return () => {
-            if (currentSocket) {
-                currentSocket.off('ros_data_update');
-            }
-        };
-    }, [handleRosDataUpdate]);
-
-    useEffect(() => {
-        const currentRosData = getRosData();
-        setRosData(currentRosData);
-
-        if (Object.keys(currentRosData).length > 0) {
-            handleRosDataUpdate(currentRosData);
-        }
-    }, [handleRosDataUpdate]);
+    }, [rosData, handleRosDataUpdate]);
 
     useEffect(() => {
         const iframe = iframeRef.current;
@@ -96,12 +84,6 @@ function Ebook() {
                 }
             };
         }
-
-        // return () => {
-        //     if (currentSocket) {
-        //         currentSocket.off('ros_data_update');
-        //     }
-        // };
     }, []);
 
     useEffect(() => {

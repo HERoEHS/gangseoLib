@@ -3,14 +3,14 @@ import "../../../assets/css/sass/chatbotData.scss";
 import ChatbotQnA from "../../../components/Contents/ChatbotQnA";
 import { Chat } from "../../../robot_functions/components/chat/Chat";
 
-function ChatbotData() {
+function ChatbotData({ rosData }) {
   return (
     <>
       <div className="cntWrapBox">
         <div className="chatBotBox">
           <ChatbotQnA />
           {/* 챗봇 페이지 구성 */}
-          <Chat />
+          <Chat rosData={rosData} />
           {/* 챗봇 페이지 구성 */}
         </div>
       </div>
