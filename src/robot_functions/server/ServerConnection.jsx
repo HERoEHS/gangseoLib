@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SocketManager from './SocketManager';
-import { setSocket, setRosData } from '../ros/rosStore';
+import { setSocket, updateRosData } from '../ros/rosStore';
 
 const ServerConnection = ({ setServerInfo }) => {
     const [envVariables, setEnvVariables] = useState({});
@@ -11,7 +11,6 @@ const ServerConnection = ({ setServerInfo }) => {
         const env = {
             HOST_IP: process.env.REACT_APP_HOST_IP,
             SERVER_PORT: process.env.REACT_APP_SERVER_PORT,
-            // 필요한 다른 환경 변수들도 여기에 추가
         };
         setEnvVariables(env);
         console.log('Environment Variables:', env);
@@ -24,7 +23,9 @@ const ServerConnection = ({ setServerInfo }) => {
                 });
                 const data = await response.json();
                 setServerInfo(data);
-                setSocketUrl(`http://${data.ip}:${data.port}`);
+                const url = `http://${data.ip}:${data.port}`;
+                console.log('Setting socket URL:', url);
+                setSocketUrl(url);
             } catch (error) {
                 console.error('Error fetching server info:', error);
             }
@@ -34,29 +35,36 @@ const ServerConnection = ({ setServerInfo }) => {
     }, [setServerInfo]);
 
     useEffect(() => {
-        if (!socketUrl) return;
+        if (!socketUrl) {
+            console.log('Socket URL not set yet');
+            return;
+        }
 
+        console.log('Attempting to connect to socket:', socketUrl);
         const socketManager = SocketManager.getInstance();
         const socket = socketManager.connect(socketUrl);
         setSocket(socket);
 
+        socket.on('connect', () => {
+            console.log('Socket connected successfully');
+        });
+
+        socket.on('connect_error', (error) => {
+            console.error('Socket connection error:', error);
+        });
+
         socket.on('ros_data_update', (data) => {
-            setRosData(data);
+            // console.log('Received ROS data:', data);
+            updateRosData(data.topic, data.data);
         });
 
         return () => {
-            // Don't disconnect on component unmount
-            // socketManager.disconnect();
+            console.log('Cleaning up socket connection');
+            socketManager.disconnect();
         };
-    }, [socketUrl, setRosData, setSocket]);
+    }, [socketUrl]);
 
-    // // 환경 변수 출력을 위한 임시 렌더링
-    // return (
-    //     <div>
-    //         <h3>Environment Variables:</h3>
-    //         <pre>{JSON.stringify(envVariables, null, 2)}</pre>
-    //     </div>
-    // );
+    return null;
 };
 
 export default ServerConnection;

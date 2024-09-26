@@ -25,6 +25,7 @@ async function setupRosSubscribers(io) {
     { name: '/heroehs/aimy/dialogue/llm', type: 'std_msgs/msg/String' },
     { name: '/heroehs/aimy/manage/ebook', type: 'std_msgs/msg/String' },
     { name: '/heroehs/aimy/dialogue/nav_button', type: 'std_msgs/msg/Int32' },
+    { name: '/heroehs/aimy/web/top_menu', type: 'std_msgs/msg/Int32' },
   ];
 
   topics.forEach(topic => {
