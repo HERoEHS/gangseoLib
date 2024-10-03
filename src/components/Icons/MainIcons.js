@@ -1,6 +1,7 @@
 import React from "react";
 import mainMike from "../../assets/images/iconMike.png";
 import iconAime from "../../assets/images/imgAimy.png";
+import mainIconEvent from "../../assets/images/mainIconEvent.png";
 import mainIconLib from "../../assets/images/mainIconLib.png";
 import mainIconRead from "../../assets/images/mainIconRead.png";
 import mainIconSearch from "../../assets/images/mainIconSearch.png";
@@ -13,6 +14,7 @@ const icons = {
     mainIconRead,
     mainMike,
     mainIconSearch,
+    mainIconEvent,
 };
 function MainIcon({ iconName, className, ...props }) {
     const iconSrc = icons[iconName];

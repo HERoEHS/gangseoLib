@@ -5,7 +5,7 @@ import serchIcon from "../../../assets/icons/tabler_search.svg";
 import serchBtnIcon from "../../../assets/icons/serchBtnIcon.svg";
 import serchAmiIcon from "../../../assets/icons/serchamiIcon.svg";
 
-function InputData() {
+function InputData({ handleTrimmedSearch }) {
   const {
     register,
     handleSubmit,
@@ -15,18 +15,19 @@ function InputData() {
   // form 제출
   const Submit = (body) => {
     const trimmedSearch = body.serchInput.trim();
-    startSerchBook(trimmedSearch);
+    handleTrimmedSearch(trimmedSearch);
+    // startSerchBook(trimmedSearch);
   };
 
   //강서도서관 검색 결과 링크
-  const startSerchBook = (serchData) => {
-    const baseUrl =
-      "https://gslib.sen.go.kr/gslib/intro/search/index.do?menu_idx=4&locExquery=111005&editMode=normal&officeNm=%EA%B0%95%EC%84%9C%EB%8F%84%EC%84%9C%EA%B4%80&lectureNm=&mainSearchType=on&search_text=";
+  // const startSerchBook = (serchData) => {
+  //   const baseUrl =
+  //     "https://gslib.sen.go.kr/gslib/intro/search/index.do?menu_idx=4&locExquery=111005&editMode=normal&officeNm=%EA%B0%95%EC%84%9C%EB%8F%84%EC%84%9C%EA%B4%80&lectureNm=&mainSearchType=on&search_text=";
 
-    const fullUrl = `${baseUrl}${encodeURIComponent(serchData)}`;
+  //   const fullUrl = `${baseUrl}${encodeURIComponent(serchData)}`;
 
-    window.open(fullUrl, "_blank");
-  };
+  //   window.open(fullUrl, "_blank");
+  // };
 
   // validation 체크
   const serchInput = {

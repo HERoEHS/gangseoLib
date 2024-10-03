@@ -21,6 +21,7 @@ import SubTest from "./pages/LibSetAbout/SubTest";
 import ReadEbook from "./pages/ReadBook/data/ReadEbook";
 import ServerConnection from './robot_functions/server/ServerConnection';
 import Readbook from "./pages/ReadBook/ReadBook";
+import Waiting from "./pages/Waiting/Waiting";
 import SerchBook from "./pages/SerchBook/SerchBook";
 import { RosProvider } from './robot_functions/hooks/RosContext';
 
@@ -65,8 +66,13 @@ function App() {
                         element={<ReadEbook />}
                     ></Route>
 
+                    {/* 이벤트 route */}
+                    {/* <Route path="/eventpage" element={<EventPage />}></Route> */}
+                    <Route path="/eventpage" element={<Waiting />}></Route>
                     {/* 도서 검색 route */}
                     <Route path="/serchbook" element={<SerchBook />}></Route>
+                    {/* 준비중 페이지 route */}
+                    <Route path="/waiting" element={<Waiting />}></Route>
                 </Routes>
             </RosProvider>
         </div>

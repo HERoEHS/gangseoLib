@@ -84,9 +84,22 @@ function MainPage() {
                         <div className="menuLight"></div>
                     </div>
                 </div>
-                {/* <div className="mainMenuRow">
+                <div className="mainMenuRow">
                         <div className="mainMenubox">
-                            <SmoothLink to="/readbook">
+                            <SmoothLink to="/eventpage">
+                                <div className="innerType2">
+                                    <MainIcons iconName="mainIconEvent" />
+                                    <p>
+                                        이벤트
+                                        <br /> 안내
+                                    </p>
+                                </div>
+                            </SmoothLink>
+                            <div className="menuShadow"></div>
+                            <div className="menuLight"></div>
+                        </div>
+                        <div className="mainMenubox">
+                            <SmoothLink to="/waiting">
                                 <div className="innerType2">
                                     <MainIcons iconName="mainIconRead" />
                                     <p>
@@ -98,38 +111,25 @@ function MainPage() {
                             <div className="menuShadow"></div>
                             <div className="menuLight"></div>
                         </div>
-                        <div className="mainMenubox">
-                            <SmoothLink to="/serchbook">
-                                <div className="innerType2">
-                                    <MainIcons iconName="mainIconSearch" />
-                                    <p>
-                                        도서
-                                        <br /> 검색
-                                    </p>
-                                </div>
-                            </SmoothLink>
-                            <div className="menuShadow"></div>
-                            <div className="menuLight"></div>
-                        </div>
+                    </div>
+                    {/* 한개짜리 */}
+                    {/* <div className="mainMenubox">
+                        <SmoothLink to="/readbook">
+                            <div className="inner">
+                                <MainIcons iconName="mainIconRead" />
+                                <p>
+                                    도서
+                                    <br />
+                                    읽어주기
+                                </p>
+                            </div>
+                        </SmoothLink>
+                        <div className="menuShadow"></div>
+                        <div className="menuLight"></div>
                     </div> */}
-                {/* 한개짜리 */}
-                <div className="mainMenubox">
-                    <SmoothLink to="/readbook">
-                        <div className="inner">
-                            <MainIcons iconName="mainIconRead" />
-                            <p>
-                                도서
-                                <br />
-                                읽어주기
-                            </p>
-                        </div>
-                    </SmoothLink>
-                    <div className="menuShadow"></div>
-                    <div className="menuLight"></div>
+                    {/* 한개짜리 */}
                 </div>
-                {/* 한개짜리 */}
-            </div>
-        </MainBackWrap>
+            </MainBackWrap>
     );
 }
 
