@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MainIcons from "../components/Icons/MainIcons";
 import { MainBackWrap } from "../components/Layout/BackWrap";
 import SmoothLink from "../components/Layout/SmoothLink";
@@ -7,20 +7,22 @@ import { useRosData } from '../robot_functions/hooks/useRosData';
 
 function MainPage() {
     const rosData = useRosData(['/heroehs/aimy/web/top_menu', '/heroehs/aimy/manage/ebook']);
+    const [topMenuData, setTopMenuData] = useState(null);
+    const [ebookData, setEbookData] = useState(null);
 
     useEffect(() => {
-        console.log('Main page ROS data:', rosData);
-    }, [rosData]);    // useEffect(() => {
-    //     const config = {
-    //         data: "hi"
-    //     };
+        if (rosData['/heroehs/aimy/web/top_menu']) {
+            setTopMenuData(rosData['/heroehs/aimy/web/top_menu'].data);
+            console.log('Top Menu Data:', rosData['/heroehs/aimy/web/top_menu'].data); // 콘솔에 출력
+        }
+    }, [rosData['/heroehs/aimy/web/top_menu']]);
 
-    //     const timer = setTimeout(() => {
-    //         publishCommon('/heroehs/aimy/test', 'std_msgs/msg/String', config);
-    //     }, 500); // 500ms 딜레이
-
-    //     return () => clearTimeout(timer);
-    // }, []);
+    useEffect(() => {
+        if (rosData['/heroehs/aimy/manage/ebook']) {
+            setEbookData(rosData['/heroehs/aimy/manage/ebook'].data);
+            console.log('Ebook Data:', rosData['/heroehs/aimy/manage/ebook'].data); // 콘솔에 출력
+        }
+    }, [rosData['/heroehs/aimy/manage/ebook']]);
 
     const handleClick = (config) => {
         publishAimyRequest(config);
@@ -29,6 +31,8 @@ function MainPage() {
     return (
         <MainBackWrap>
             <h1>Main Page</h1>
+            {/* {topMenuData && <div>{topMenuData}</div>}
+            {ebookData && <div>{ebookData}</div>} */}
             <div className="mainMenuWrap">
                 <div className="mainMenubox">
                     <SmoothLink to="/chatbot"

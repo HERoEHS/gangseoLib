@@ -1,5 +1,13 @@
 let socket = null;
-let rosData = {};
+const rosData = {
+  '/heroehs/aimy/commander/status': null,
+  '/heroehs/aimy/dialogue/stt': null,
+  '/heroehs/aimy/dialogue/stt/stream': null,
+  '/heroehs/aimy/dialogue/llm': null,
+  '/heroehs/aimy/manage/ebook': null,
+  '/heroehs/aimy/dialogue/nav_button': null,
+  '/heroehs/aimy/web/top_menu': null
+};
 const observers = {};
 
 export const setSocket = (newSocket) => {
@@ -8,10 +16,9 @@ export const setSocket = (newSocket) => {
 
 export const updateRosData = (topic, data) => {
   if (topic && data !== undefined) {
-    // console.log(`Updating ROS data for topic: ${topic}`, data);  // 로그 추가
     rosData[topic] = {
-      data,
-      timestamp: Date.now()
+      data: data.data,
+      timestamp: data.timestamp
     };
     notifyObservers(topic);
   } else {
@@ -36,7 +43,6 @@ export const unsubscribeFromTopic = (topic, callback) => {
 
 const notifyObservers = (topic) => {
   if (observers[topic] && rosData[topic]) {
-    // console.log(`Notifying observers for topic: ${topic}`, rosData[topic]);  // 로그 추가
     observers[topic].forEach(callback => callback(rosData[topic]));
   }
 };

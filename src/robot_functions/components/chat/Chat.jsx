@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ChatUI from './ChatUI';
 import { useChatLogic } from './ChatLogic';
 import { useRosData } from '../../hooks/useRosData';
@@ -16,14 +16,48 @@ export function Chat() {
         '/heroehs/aimy/dialogue/llm'
     ]);
 
+    const [sttStreamData, setSttStreamData] = useState(null);
+    const [sttData, setSttData] = useState(null);
+    const [llmData, setLlmData] = useState(null);
+
     useEffect(() => {
-        Object.entries(rosData).forEach(([topic, data]) => {
-            if (data && data.data !== undefined) {
-                handleRosDataUpdate({ topic, data: data.data });
-            }
-        });
-        console.log(rosData);
-    }, [rosData, handleRosDataUpdate]);
+        if (rosData['/heroehs/aimy/dialogue/stt/stream']) {
+            setSttStreamData(rosData['/heroehs/aimy/dialogue/stt/stream'].data);
+            console.log('SttStream Data:', rosData['/heroehs/aimy/dialogue/stt/stream'].data); // 콘솔에 출력
+        }
+    }, [rosData['/heroehs/aimy/dialogue/stt/stream']]);
+
+    useEffect(() => {
+        if (rosData['/heroehs/aimy/dialogue/stt']) {
+            setSttData(rosData['/heroehs/aimy/dialogue/stt'].data);
+            console.log('Stt Data:', rosData['/heroehs/aimy/dialogue/stt'].data); // 콘솔에 출력
+        }
+    }, [rosData['/heroehs/aimy/dialogue/stt']]);
+
+    useEffect(() => {
+        if (rosData['/heroehs/aimy/dialogue/llm']) {
+            setLlmData(rosData['/heroehs/aimy/dialogue/llm'].data);
+            console.log('Llm Data:', rosData['/heroehs/aimy/dialogue/llm'].data); // 콘솔에 출력
+        }
+    }, [rosData['/heroehs/aimy/dialogue/llm']]);
+
+    useEffect(() => {
+        if (sttStreamData !== null) {
+            handleRosDataUpdate({ topic: '/heroehs/aimy/dialogue/stt/stream', data: sttStreamData });
+        }
+    }, [sttStreamData, handleRosDataUpdate]);
+
+    useEffect(() => {
+        if (sttData !== null) {
+            handleRosDataUpdate({ topic: '/heroehs/aimy/dialogue/stt', data: sttData });
+        }
+    }, [sttData, handleRosDataUpdate]);
+
+    useEffect(() => {
+        if (llmData !== null) {
+            handleRosDataUpdate({ topic: '/heroehs/aimy/dialogue/llm', data: llmData });
+        }
+    }, [llmData, handleRosDataUpdate]);
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {

@@ -2,7 +2,15 @@ const rclnodejs = require('rclnodejs');
 
 let rosNode;
 const publishers = {};
-const rosData = {};
+const rosData = {
+  '/heroehs/aimy/commander/status': null,
+  '/heroehs/aimy/dialogue/stt': null,
+  '/heroehs/aimy/dialogue/stt/stream': null,
+  '/heroehs/aimy/dialogue/llm': null,
+  '/heroehs/aimy/manage/ebook': null,
+  '/heroehs/aimy/dialogue/nav_button': null,
+  '/heroehs/aimy/web/top_menu': null
+};
 
 // Initialize the ROS Node
 async function initRosNode() {
@@ -31,12 +39,11 @@ async function setupRosSubscribers(io) {
   topics.forEach(topic => {
     rosNode.createSubscription(topic.type, topic.name, (msg) => {
       const updatedTopic = {
-        topic: topic.name,
         data: msg.data,
         timestamp: Date.now()
       };
       rosData[topic.name] = updatedTopic;
-      io.emit('ros_data_update', updatedTopic);
+      io.emit('ros_data_update', { topic: topic.name, data: updatedTopic });
       console.log('Subscribed:', topic.name, msg.data);
     });
   });
